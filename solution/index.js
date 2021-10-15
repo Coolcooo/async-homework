@@ -15,13 +15,13 @@ module.exports = function (Homework) {
 
   return async (array, fn, initialValue, cb) => {
     let result = initialValue;
-    const getLength = promisify(asyncArray.length);
+    const getLength = promisify(array.length);
     const promiseLess = promisify(Homework.less);
     const promiseAdd = promisify(Homework.add);
     const promiseFn = promisify(fn);
-    const promiseGetElem = promisify(asyncArray.get);
+    const promiseGetElem = promisify(array.get);
     for (let i = 0; await promiseLess(i, await getLength()); i = await promiseAdd(i, 1)) {
-      result = await promiseFn(await promiseGetElem(i), result, i, asyncArray);
+      result = await promiseFn(await promiseGetElem(i), result, i, array);
     }
     cb(result);
   }
