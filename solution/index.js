@@ -21,7 +21,7 @@ module.exports = function (Homework) {
     const promiseFn = promisify(fn);
     const promiseGetElem = promisify(array.get);
     for (let i = 0; await promiseLess(i, await getLength()); i = await promiseAdd(i, 1)) {
-      result = await promiseFn(await promiseGetElem(i), result, i, array);
+      result = await promiseFn(result, await promiseGetElem(i), i, array);
     }
     cb(result);
   }
